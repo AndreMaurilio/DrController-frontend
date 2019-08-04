@@ -14,6 +14,7 @@
           <!-- /.panel-heading -->
           <div class="panel-body">
             <div id="morris-area-chart"></div>
+            <!-- "morris-area-chart"-->
           </div>
           <!-- /.panel-body -->
         </div>
@@ -86,14 +87,18 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'MorrisCharts',
-  data () {
+
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
+      msg: 'Welcome to Your Vue.js App',
+    };
+  },
+
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

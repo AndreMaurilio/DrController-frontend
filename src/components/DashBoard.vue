@@ -103,7 +103,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Grafico de Progressão
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div class="panel-body"><!--"morris-area-chart"-->
                             <div id="morris-area-chart"></div>
                         </div>
                         <!-- /.panel-body -->
@@ -412,7 +412,7 @@
                             <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
                         </div>
                         <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
+                            <div id="morris-donut-chart" ></div>
                             <a href="#" class="btn btn-default btn-block">View Details</a>
                         </div>
                         <!-- /.panel-body -->
@@ -549,6 +549,7 @@ import axios from 'axios'
 import { mapState } from 'vuex'
 import {mapMutations} from 'vuex'
 
+
 export default {
   name: 'DashBoard',
   data () {
@@ -559,36 +560,28 @@ export default {
             cancelado:'',
             emitido:'',
             verificando:''
-        }
+        },
     }
   },
 
   methods: {
- atualizar () {
-                    axios.get('/desenho/contagemstatus', 
-
-                        {
-                            headers: 
-                            { 
-                            Accept: 'application/json' 
-                            } 
-                            })
+        atualizar () {
+                    axios.get('/desenho/contagemstatus', { headers: {  Accept: 'application/json'  } })
                         .then(res => {
                         console.log(res)
                         this.total = res.data
                         })
                         .catch(error => console.log(error.response))
-                    }
+                    } ,    
+    },
 
-  },
 
      created () {
       this.atualizar()
      }
  }
-
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
