@@ -240,7 +240,7 @@
                         <li>
                             <router-link to="/dashborad"> <i class="fa fa-paper-plane fa-fw"></i> Emissões </router-link>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graficos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -250,14 +250,18 @@
                                     <router-link to="/morris">  Morris.js Charts </router-link>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                               /.nav-second-level 
+                        </li> GRAFICOS - DEFINIR DEPOIS SE VAI APROVEITA ALGO DAQUI-->
                         <li>
                             <router-link to="/tables">  <i class="fa fa-table fa-fw"></i> Tabelas </router-link>
                         </li>
                         <li>
-                            <router-link to="/forms">  <i class="fa fa-building-o fa-fw"></i> Cadastro de Maquete </router-link>
+                            <router-link to="/forms">  <i class="fa fa-building-o fa-fw"></i> Cadastro de Usuarios </router-link>
                         </li>
+                         <li>
+                            <router-link to="/formsMaquete">  <i class="fa fa-building-o fa-fw"></i> Cadastro de Projetos</router-link>
+                        </li>
+
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

@@ -2,7 +2,7 @@
   <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Forms</h1>
+                    <h1 class="page-header">Cadastro de Usuario</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -18,14 +18,36 @@
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <div class="form-group">
-                                            <label>Text Input</label>
-                                            <input class="form-control">
+                                            <label>Nome:</label>
+                                            <input class="form-control" v-model="nome" placeholder="Enter text">
                                             <p class="help-block">Example block-level help text here.</p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Text Input with Placeholder</label>
-                                            <input class="form-control" placeholder="Enter text">
+                                            <label>Email:</label>
+                                            <input class="form-control" v-model="email"  placeholder="Enter text">
                                         </div>
+                                         <div class="form-group">
+                                            <label>Senha:</label>
+                                            <input class="form-control" v-model="senha" placeholder="Enter text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Repetir a senha:</label>
+                                            <input class="form-control" v-model="senha" placeholder="Enter text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Chave do PLant3D:</label>
+                                            <input class="form-control" v-model="idCad" placeholder="Enter text">
+                                        </div>
+                                         <div class="form-group">
+                                            <label>Disciplina:</label>
+                                            <input class="form-control" v-model="disciplina" placeholder="Enter text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Função:</label>
+                                            <input class="form-control" v-model="perfil" placeholder="Enter text">
+                                        </div>
+                                        <button class="btn btn-sucess" type="submit" @click="cadastrarUsuario" >SALVAR</button>
+
                                         <div class="form-group">
                                             <label>Static Control</label>
                                             <p class="form-control-static">email@example.com</p>
@@ -205,13 +227,48 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Forms',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      
+          idCad:'',
+          nome:'',
+          disciplina:'',
+          email:'',
+          senha:'',
+          perfil:''
+
+      
     }
-  }
+  },
+  methods: {
+
+        cadastrarUsuario () {
+      axios.post('/usuario/saveusuario', 
+          {
+            idCad: this.idCad,
+            nome: this.nome,
+            disciplina: this.disciplina,
+            email:this.email,
+            senha:this.senha,
+            perfil:this.perfil,
+
+
+             headers: { Accept: 'application/json' }
+
+          })
+        .then(res => {
+        //    this.$router.push('/')
+  
+        })
+        .catch(error => console.log(error.response))
+    } 
+
+}
+
 }
 </script>
 

@@ -5,7 +5,7 @@ $(function() {
     datatype: 'json',
     success: function(data) {
       Morris.Area({
-        element: 'morris-area-chart',
+        element: 'morris-area-chart', // element: 'morris-area-chart'//
         data: data,
         xkey: 'data',
         ykeys: ['emitidos', 'verificando', 'cancelados'],
