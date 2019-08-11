@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
+import Login from '@/components/pages/Login';
 import DashBoard from '@/components/DashBoard';
 
 import FloatCharts from '@/components/charts/FloatCharts';
@@ -18,18 +19,28 @@ import Panels from '@/components/ui-elements/Panels';
 import Typography from '@/components/ui-elements/Typography';
 
 import Blank from '@/components/pages/Blank';
-import Login from '@/components/pages/Login';
+//import Login from '@/components/pages/Login';
 
 Vue.use(Router);
 
 const router = new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+
     {
       path: '/',
       name: 'Home',
       component: Home,
       children: [
-        { path: '/dashborad', name: 'DashBoard', component: DashBoard },
+        //{ path: '/public/login', name: 'Login', component: Login },
+
+        { path: '/dashboard', name: 'DashBoard', component: DashBoard },
 
         { path: '/float', name: 'FloatCharts', component: FloatCharts },
         { path: '/morris', name: 'MorrisCharts', component: MorrisCharts },
@@ -55,10 +66,12 @@ const router = new Router({
 
         { path: '/blank', name: 'Blank', component: Blank }
       ]
-    },
-    { path: '/public/login', name: 'Login', component: Login }
+    }
+    //
   ]
 });
 
-router.replace({ path: '/dashborad', redirect: '/dashborad' });
+//router.replace({ path: '/dashborad', redirect: '/dashborad' });
+//router.replace({ path: '/login', redirect: '/dashboard' });
+
 export default router;

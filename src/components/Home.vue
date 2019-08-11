@@ -1,5 +1,6 @@
 <template>
    <div id="wrapper">
+
        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -9,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">DrController</a>
+                <a class="navbar-brand"  href="/dashboard">DrController</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -214,7 +215,8 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                            
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -238,7 +240,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <router-link to="/dashborad"> <i class="fa fa-paper-plane fa-fw"></i> Emissões </router-link>
+                            <router-link to="/dashboard"> <i class="fa fa-paper-plane fa-fw"></i> Emissões </router-link>
                         </li>
                         <!--<li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graficos<span class="fa arrow"></span></a>
@@ -255,12 +257,22 @@
                         <li>
                             <router-link to="/tables">  <i class="fa fa-table fa-fw"></i> Tabelas </router-link>
                         </li>
-                        <li>
-                            <router-link to="/forms">  <i class="fa fa-building-o fa-fw"></i> Cadastro de Usuarios </router-link>
-                        </li>
-                         <li>
-                            <router-link to="/formsMaquete">  <i class="fa fa-building-o fa-fw"></i> Cadastro de Projetos</router-link>
-                        </li>
+
+                        
+
+                          <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Cadastros<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                  <router-link to="/forms">  Cadastro de Usuarios </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/formsMaquete"> Cadastro de Projetos</router-link>
+                                </li>
+                                 
+                              </ul>
+                        <li>                            
+
 
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
@@ -316,38 +328,58 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                      <!--  <li> 
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <router-link to="/blank"> Blank Page </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/public/login"> Login Page </router-link>
+                                    <router-link to="/login"> Login Page </router-link>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
-        <router-view/>
-
+    <router-view/>
    </div>
 </template>
 
 <script>
+
+import { mapState, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   name: 'Home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+ computed: {
+    ...mapState([
+      'usuario',
+ 
+    ]),
+    ...mapGetters([
+      'getToken',
+      'getUsuario'
+
+    ])
+
+  },
+  methods: {
+    ...mapMutations([
+      'logout',
+
+    ])
   }
+
+
 }
 </script>
 

@@ -547,7 +547,7 @@
 <script>
 import axios from 'axios'
 import { mapState } from 'vuex'
-import {mapMutations} from 'vuex'
+import {mapMutations,mapGetters} from 'vuex'
 
 
 export default {
@@ -563,6 +563,16 @@ export default {
         },
     }
   },
+
+   computed: {
+    ...mapState([
+      'usuario',
+    ]),
+       ...mapGetters([
+
+      'getUsuario'
+    ]),
+   },
 
   methods: {
         atualizar () {
@@ -580,6 +590,7 @@ export default {
       this.atualizar()
      }
  }
+
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

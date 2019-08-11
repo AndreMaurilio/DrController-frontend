@@ -380,14 +380,7 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       numMaquete:'',
       desenhos: []
-      /*    id:'',
-          projeto:'',
-          isometrico:'',
-          desenhista:'',
-          verificador:'',
-          revisao:'',
-          dataInicial:'',
-          dataEmissao:''*/
+
       
 
     }
@@ -397,7 +390,7 @@ export default {
        desenhoPorMaquete(numMaquete){
       axios.get('/desenho/todosdesenhos',
       
-        { 
+        {// crossorigin:true ,
           params:{id:this.numMaquete}
 
         }  
