@@ -215,7 +215,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        <li><a v-if="usuario" @click="logout" href="/login"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
                             
                         </li>
                     </ul>
@@ -346,6 +346,7 @@
             <!-- /.navbar-static-side -->
         </nav>
     <router-view/>
+
    </div>
 </template>
 

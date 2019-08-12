@@ -72,6 +72,5 @@ const router = new Router({
 });
 
 //router.replace({ path: '/dashborad', redirect: '/dashborad' });
-//router.replace({ path: '/login', redirect: '/dashboard' });
 
 export default router;

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <!--<router-link to="/login"></router-link>-->
-    <router-link to="/login"></router-link>
-    <!--<router-link to="/dashboard"></router-link>-->
+
     <router-view />
+
+    <!--<router-link to="/dashboard"></router-link>-->
+
     <!-- <router-link to="Home/public/login">
       <a v-if="getUsuario!=null">
     
@@ -13,7 +15,9 @@
 
 <script>
 
+//import Login from '@/components/pages/Login';
 
+import Login from './components/pages/Login'
 import { mapState, mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 
@@ -32,12 +36,25 @@ export default {
   methods: {
     ...mapMutations([
       'logout'
-    ])
+    ]),
+
+    home(){
+      if(this.usuario==null){
+      this.$router.push('/login')
+      } else{
+        this.$router.push('/dashboard')
+      }
+    }
   },
   components:{
  
 
+  },
+
+  created(){
+    this.home();
   }
+
 
 
 
