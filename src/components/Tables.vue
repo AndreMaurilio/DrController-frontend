@@ -27,6 +27,7 @@
                                         <th>Estatus</th>
                                         <th>Data Inicial</th>
                                         <th>Data Emissão</th>
+                                        <th>N°Folhas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,8 +54,11 @@
                                         <td>{{des.nomeVerificador}} </td>
                                         <td>{{des.revisao}} </td>
                                         <td>{{des.status}} </td>
-                                        <td>{{des.dataini}} </td>
+                                    
+                                        <td>{{formatoDeDatas(des.dataini)}} </td>
                                         <td>{{des.datafin}} </td>
+                                        <td>{{des.numFolhas}} </td>
+
                                    </tr>                       
                                    
                                 </tbody>
@@ -378,7 +382,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      numMaquete:'',
+      numMaquete:'', 
       desenhos: []
 
       
@@ -402,6 +406,12 @@ export default {
       .catch(error => console.log(error.response))
 
     },
+
+    formatoDeDatas: function (desData) {
+        var dataDes = new Date(desData)
+        var strData = ''
+        return strData.concat(dataDes.getDate(),'/',dataDes.getMonth(),'/',dataDes.getFullYear())
+    }
 
 
 
