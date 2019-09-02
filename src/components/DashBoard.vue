@@ -3,10 +3,20 @@
          <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Desenhos</h1>
+                    <h1 class="page-header">DESENHOS</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            <!-- CALENDARIO-->
+            <div class="pull-left">
+                <date-picker v-model="mydatein" lang="pt-br" type="text" format="YYYY-MM-DD" placeholder="Selecione a data"></date-picker> até: 
+                <date-picker v-model="mydateout" lang="pt-br" type="text" format="YYYY-MM-DD" placeholder="Selecione a data"></date-picker>
+                <button class="btn btn-info" style="margin-right: 10px" type="submit" @click="contagemPorData()" >Buscar</button>
+                
+            </div>
+            <p class="month-refer" > Referência: {{indicaBusca(mes,verdFalse)}}</p>
+           
+
             <!-- /.row -->
             <div class="row">
                <!-- <div class="col-lg-3 col-md-6">
@@ -548,10 +558,11 @@
 import axios from 'axios'
 import { mapState } from 'vuex'
 import {mapMutations,mapGetters} from 'vuex'
-
+import DatePicker from 'vue2-datepicker'
 
 export default {
   name: 'DashBoard',
+
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -559,9 +570,34 @@ export default {
         total : {
             cancelado:'',
             emitido:'',
-            verificando:''
+            verificando:'',
         },
+             mydatein:'',
+            mydateout:'',            
+            mes:[
+                'Janeiro',
+                'Fevereiro',
+                'Março',
+                'Abril',
+                'Maio',
+                'Junho',
+                'Julho',
+                'Agosto',
+                'Setembro',
+                'Outubro',
+                'Novembro',
+                'Dezembro',
+                'Consulta:'
+            ],
+            verdFalse: false
+       
+
     }
+  },
+
+
+  components: {
+      DatePicker
   },
 
    computed: {
@@ -575,24 +611,64 @@ export default {
    },
 
   methods: {
+
+        contagemPorData(){
+             axios.get('/desenho/contagemstatus', { headers: {  Accept: 'application/json'  },
+                    params:{
+                        bol:true,
+                        dIni:this.mydatein,
+                        dFim: this.mydateout
+                    } })
+                        .then(res => {
+                        console.log(res)
+                        this.total = res.data
+                        this.verdFalse=true
+                        })
+                        .catch(error => console.log(error.response))
+        },
+
+
         atualizar () {
-                    axios.get('/desenho/contagemstatus', { headers: {  Accept: 'application/json'  } })
+                    axios.get('/desenho/contagemstatus', 
+                    { headers: {  Accept: 'application/json'  }, params:{ bol:false} } )
                         .then(res => {
                         console.log(res)
                         this.total = res.data
                         })
                         .catch(error => console.log(error.response))
-                    } ,    
-    },
+                    } ,   
+
+        indicaBusca: function(meses,verdadeiro){
+            var month= new Date();
+            if(verdadeiro==false){
+                return meses[month.getMonth()]
+            }else
+            {
+                return meses[12]
+            }
+
+        }
 
 
-     created () {
-      this.atualizar()
+
+ },
+     created() {
+         this.atualizar()
      }
- }
+}
+
+
+
 
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
+.month-refer{
+text-align: inherit;
+font-size: 25px;
+
+}
 
 </style>
