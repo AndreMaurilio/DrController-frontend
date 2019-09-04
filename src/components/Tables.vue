@@ -31,7 +31,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
+                                 <!--   <tr class="odd gradeX">
                                         <td>UFN3</td>
                                         <td>8-HG-00-OP-233</td>
                                         <td>Bruno</td>
@@ -46,7 +46,7 @@
                                         <td>Win 95+</td>
                                         <td class="center">5.5</td>
                                         <td class="center">A</td>
-                                    </tr>
+                                    </tr>-->
                                    <tr  v-for="des in desenhos" :key="des.id">
                                         <td>{{des.desContratado}} </td>
                                         <td>{{des.tag}} </td>

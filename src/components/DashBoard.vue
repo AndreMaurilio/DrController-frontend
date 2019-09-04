@@ -56,7 +56,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Ver Detalhes</span>
+                                <span class="pull-left"  @click="checkData(mydatein,0)">Ver Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -78,13 +78,16 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Ver Detalhes</span>
+                                <span class="pull-left" @click="checkData(mydatein,1)" >Ver Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
+
+
+                
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
@@ -100,14 +103,64 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Ver Detalhes</span>
+                                <span class="pull-left" @click="checkData(mydatein,2)" >Ver Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
+          </div> 
+
+<!---TABELA voltar a fazer!!--->
+           <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                       <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Projeto</th>
+                                        <th>Isométrico</th>
+                                        <th>Desenhistas</th>
+                                        <th>Verificador</th>
+                                        <th>Revisão</th>
+                                        <th>Estatus</th>
+                                        <th>Data Inicial</th>
+                                        <th>Data Emissão</th>
+                                        <th>N°Folhas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  v-for="des in desenhos" :key="des.id">
+                                        <td>{{des.desContratado}} </td>
+                                        <td>{{des.tag}} </td>
+                                        <td>{{des.desIdCad}} </td>
+                                        <td>{{des.nomeVerificador}} </td>
+                                        <td>{{des.revisao}} </td>
+                                        <td>{{des.status}} </td>
+                                    
+                                        <td>{{formatoDeDatas(des.dataini)}} </td>
+                                        <td>{{des.datafin}} </td>
+                                        <td>{{des.numFolhas}} </td>
+
+                                   </tr>                       
+                                   
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
+
+
+<!--TABELA-->
+
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-8">
@@ -572,8 +625,8 @@ export default {
             emitido:'',
             verificando:'',
         },
-             mydatein:'',
-            mydateout:'',            
+             mydatein:null,
+            mydateout:null,            
             mes:[
                 'Janeiro',
                 'Fevereiro',
@@ -589,7 +642,13 @@ export default {
                 'Dezembro',
                 'Consulta:'
             ],
-            verdFalse: false
+            verdFalse: false,
+            tipStatus:[
+                'EMITIDO',
+                'VERIFICANDO',
+                'CANCELADO'
+            ],
+            desenhos:[],
        
 
     }
@@ -610,6 +669,8 @@ export default {
     ]),
    },
 
+
+//CONTAGEM DE STATUS COM CALENDARIO 
   methods: {
 
         contagemPorData(){
@@ -627,6 +688,7 @@ export default {
                         .catch(error => console.log(error.response))
         },
 
+//CONTAGEM DE STATUS DEFAULT 
 
         atualizar () {
                     axios.get('/desenho/contagemstatus', 
@@ -638,6 +700,7 @@ export default {
                         .catch(error => console.log(error.response))
                     } ,   
 
+
         indicaBusca: function(meses,verdadeiro){
             var month= new Date();
             if(verdadeiro==false){
@@ -647,7 +710,71 @@ export default {
                 return meses[12]
             }
 
+        },
+
+     formatoDeDatas: function (desData) {
+        var dataDes = new Date(desData)
+        var strData = ''
+        return strData.concat(dataDes.getDate(),'/',dataDes.getMonth(),'/',dataDes.getFullYear())
+    },
+
+//LISTA DESENHOS POR STATUS E DATA DO MES VINGENTE
+           desenhoPorStatus(n){               
+      axios.get('/desenho/desenhosdatastatus',
+      
+        {// crossorigin:true ,
+          params:{
+              bol:false,
+              status:this.tipStatus[n]
+
+              }
+            }  
+      
+      ).then(res =>{
+        console.log(res)
+        this.desenhos=res.data
+      })
+      .catch(error => console.log(error.response))
+
+    },
+
+//LISTA DESENHOS POR STATUS E CALENDARIO
+    desenhosPorStatusCalendario(n){
+axios.get('/desenho/desenhosdatastatus',
+      
+        {// crossorigin:true ,
+          params:{
+              bol:true,
+              status:this.tipStatus[n],
+             dIni:this.mydatein,
+             dFim: this.mydateout
+            }  
+      
+     } ).then(res =>{
+        console.log(res)
+        this.desenhos=res.data
+      })
+      .catch(error => console.log(error.response))
+
+    } 
+
+    ,
+    checkData(mydatein,n){
+        if (mydatein!=null){
+            this.desenhosPorStatusCalendario(n)
+        }else{
+            this.desenhoPorStatus(n)
         }
+    }
+
+
+
+
+
+
+
+
+
 
 
 
