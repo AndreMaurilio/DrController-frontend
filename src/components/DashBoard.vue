@@ -7,6 +7,16 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            <!--COMBOBOX-->
+            <div class="dropdown">
+                <label for= "projeto">Projeto</label>
+                <select class="form-contrl" name="projeto" id="projeto" style="width: 400px">
+                    <option :value= "null" disable selected> Selecionar Projeto</option>
+                    <option v-for= "option in projetos" v-bind:key= "option.numProj">{{option.nomProj}}</option>
+                    
+                </select>
+            </div>
+
             <!-- CALENDARIO-->
             <div class="pull-left">
                 <date-picker v-model="mydatein" lang="pt-br" type="text" format="YYYY-MM-DD" placeholder="Selecione a data"></date-picker> até: 
@@ -18,29 +28,7 @@
            
 
             <!-- /.row -->
-            <div class="row">
-               <!-- <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>-->
+            <div class="row">       
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -649,7 +637,8 @@ export default {
                 'CANCELADO'
             ],
             desenhos:[],
-       
+            projetos:[],
+            nProj: null,
 
     }
   },
@@ -670,7 +659,7 @@ export default {
    },
 
 
-//CONTAGEM DE STATUS COM CALENDARIO 
+//CONTAGEM DE STATUS COM CALENDARIO - GERAL
   methods: {
 
         contagemPorData(){
@@ -688,7 +677,7 @@ export default {
                         .catch(error => console.log(error.response))
         },
 
-//CONTAGEM DE STATUS DEFAULT 
+//CONTAGEM DE STATUS DEFAULT - GERAL
 
         atualizar () {
                     axios.get('/desenho/contagemstatus', 
@@ -765,21 +754,31 @@ axios.get('/desenho/desenhosdatastatus',
         }else{
             this.desenhoPorStatus(n)
         }
-    }
+    },
 
+    //POPULAR COMBOBOX DE PROJETOS
+   carregaCombo(){
+    axios.get('/maquete/projetos',
+      
+        {
+             headers: 
+             { 
+               Accept: 'application/json' 
+             } 
+      
+     } ).then(res =>{
+        console.log(res)
+        this.projetos=res.data
+      })
+      .catch(error => console.log(error.response))
 
-
-
-
-
-
-
-
+    } 
 
 
 
  },
      created() {
+         this.carregaCombo(),
          this.atualizar()
      }
 }
