@@ -10,11 +10,12 @@
             <!--COMBOBOX-->
             <div class="dropdown">
                 <label for= "projeto">Projeto</label>
-                <select class="form-contrl" name="projeto" id="projeto" style="width: 400px">
-                    <option :value= "null" disable selected> Selecionar Projeto</option>
-                    <option v-for= "option in projetos" v-bind:key= "option.numProj">{{option.nomProj}}</option>
-                    
+                <select class="form-contrl" name="projeto" id="projeto" style="width: 400px" v-model="nProj" @change="atualizaProjSelec()" >
+                    <option :value= "-1" disable selected> Selecionar Projeto</option>
+                    <option v-for= "option in projetos" :key= "option.numProj" v-bind:value="option.numProj" >
+                        {{option.nomProj}} N°{{option.numProj}} </option>                    
                 </select>
+
             </div>
 
             <!-- CALENDARIO-->
@@ -130,7 +131,7 @@
                                         <td>{{des.status}} </td>
                                     
                                         <td>{{formatoDeDatas(des.dataini)}} </td>
-                                        <td>{{des.datafin}} </td>
+                                        <td>{{formatoDeDatas(des.datafim)}} </td>
                                         <td>{{des.numFolhas}} </td>
 
                                    </tr>                       
@@ -638,7 +639,7 @@ export default {
             ],
             desenhos:[],
             projetos:[],
-            nProj: null,
+            nProj: -1,
 
     }
   },
@@ -656,6 +657,7 @@ export default {
 
       'getUsuario'
     ]),
+
    },
 
 
@@ -666,6 +668,7 @@ export default {
              axios.get('/desenho/contagemstatus', { headers: {  Accept: 'application/json'  },
                     params:{
                         bol:true,
+                        nProj: this.nProj,
                         dIni:this.mydatein,
                         dFim: this.mydateout
                     } })
@@ -681,7 +684,11 @@ export default {
 
         atualizar () {
                     axios.get('/desenho/contagemstatus', 
-                    { headers: {  Accept: 'application/json'  }, params:{ bol:false} } )
+                    { headers: {  Accept: 'application/json'  },
+                     params:{
+                     bol:false, 
+                     nProj:this.nProj
+                     } } )
                         .then(res => {
                         console.log(res)
                         this.total = res.data
@@ -714,6 +721,7 @@ export default {
         {// crossorigin:true ,
           params:{
               bol:false,
+              nProj:this.nProj,
               status:this.tipStatus[n]
 
               }
@@ -734,6 +742,7 @@ axios.get('/desenho/desenhosdatastatus',
         {// crossorigin:true ,
           params:{
               bol:true,
+              nProj:this.nProj,
               status:this.tipStatus[n],
              dIni:this.mydatein,
              dFim: this.mydateout
@@ -748,6 +757,7 @@ axios.get('/desenho/desenhosdatastatus',
     } 
 
     ,
+    //CHECA SE A BUSCA USA CALENDARIO E CHAMA METODO ARPOPRIADO
     checkData(mydatein,n){
         if (mydatein!=null){
             this.desenhosPorStatusCalendario(n)
@@ -756,7 +766,7 @@ axios.get('/desenho/desenhosdatastatus',
         }
     },
 
-    //POPULAR COMBOBOX DE PROJETOS
+    //POPULA O COMBOBOX DE PROJETOS
    carregaCombo(){
     axios.get('/maquete/projetos',
       
@@ -772,11 +782,19 @@ axios.get('/desenho/desenhosdatastatus',
       })
       .catch(error => console.log(error.response))
 
-    } 
+    },
+
+         //SETA VARIAVEL QUE IDENTIFICA O PROJETO E ATUALIZA OS CAMPOS
+    atualizaProjSelec(){
+    this.atualizar()
+
+    },
+   },
+    
 
 
 
- },
+ 
      created() {
          this.carregaCombo(),
          this.atualizar()
