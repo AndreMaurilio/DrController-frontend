@@ -6,13 +6,22 @@ $(function() {
     success: function(data) {
       Morris.Area({
         element: 'morris-area-chart', // element: 'morris-area-chart'//
+        gridEnabled: true,
+        axes: true,
         data: data,
         xkey: 'data',
         ykeys: ['emitidos', 'verificando', 'cancelados'],
         labels: ['Emitidos', 'Verificando', 'Cancelados'],
-        pointSize: 2,
+        xLabels: ['month'],
+        fillOpacity: 0.6,
+        pointSize: 3,
         hideHover: 'auto',
-        resize: true
+        // behaveLikeLine: true,
+        resize: true,
+        lineWidth: 3,
+        pointFillColors: ['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors: ['green', 'orange', 'red']
       });
     }
   });

@@ -13,7 +13,7 @@
           <div class="panel-heading">Progressão Area11</div>
           <!-- /.panel-heading -->
           <div class="panel-body">
-            <div id="morris-area-chart"></div>
+            <div id="morris-bar-chart"></div>
             <!-- "morris-area-chart"-->
           </div>
           <!-- /.panel-body -->

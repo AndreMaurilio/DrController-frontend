@@ -155,7 +155,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Grafico de Progressão
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Grafico de Progressão:
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -178,7 +178,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body"><!--"morris-area-chart"-->
-                            <div id="morris-area-chart"></div>
+                            <div id="morris-area-chart" style="position: relative"></div>               
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -782,7 +783,7 @@ axios.get('/desenho/desenhosdatastatus',
       })
       .catch(error => console.log(error.response))
 
-    },
+    },  
 
          //SETA VARIAVEL QUE IDENTIFICA O PROJETO E ATUALIZA OS CAMPOS
     atualizaProjSelec(){
@@ -790,10 +791,6 @@ axios.get('/desenho/desenhosdatastatus',
 
     },
    },
-    
-
-
-
  
      created() {
          this.carregaCombo(),
