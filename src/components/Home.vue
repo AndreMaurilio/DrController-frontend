@@ -271,6 +271,10 @@
                                 </li>
                                  
                               </ul>
+                                <!-- CAMPO DE LINHAS -->
+                         <li>
+                            <router-link to="/linhas"> <i class="fa fa-bar-chart-o fa-fw"></i> Linhas </router-link>
+                        </li>
                         <li>                            
 
 

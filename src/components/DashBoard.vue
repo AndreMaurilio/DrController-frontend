@@ -708,7 +708,7 @@ export default {
             }
 
         },
-
+//CONVERTE AS DATAS PARA O FORMATO DD/MM/YYYY
      formatoDeDatas: function (desData) {
         var dataDes = new Date(desData)
         var strData = ''

@@ -11,6 +11,8 @@ import Forms from '@/components/Forms';
 import FormsMaquete from '@/components/FormsMaquete';
 import Tables from '@/components/Tables';
 
+import Linhas from '@/components/Linhas';
+
 import Buttons from '@/components/ui-elements/Buttons';
 import Grid from '@/components/ui-elements/Grid';
 import Icons from '@/components/ui-elements/Icons';
@@ -44,6 +46,7 @@ const router = new Router({
 
         { path: '/float', name: 'FloatCharts', component: FloatCharts },
         { path: '/morris', name: 'MorrisCharts', component: MorrisCharts },
+        { path: '/linhas', name: 'Linhas', component: Linhas },
 
         { path: '/tables', name: 'Tables', component: Tables },
         { path: '/forms', name: 'Forms', component: Forms },
