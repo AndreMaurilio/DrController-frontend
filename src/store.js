@@ -13,7 +13,8 @@ export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
   state: {
     usuario: null,
-    token: null
+    token: null,
+    maquetes: []
   },
 
   mutations: {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
 
     setToken(state, token) {
       state.token = token;
+    },
+    setMaquetes(state, maquetes) {
+      state.maquetes = maquetes;
     },
     logout(state) {
       state.token = null;
@@ -39,6 +43,9 @@ export default new Vuex.Store({
     },
     getAdmin(state) {
       return state.admin;
+    },
+    getMaquetes(state) {
+      return state.maquetes;
     }
   }
 });

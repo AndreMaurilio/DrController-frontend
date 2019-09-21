@@ -12,7 +12,7 @@
                 <label for= "projeto">Projeto</label>
                 <select class="form-contrl" name="projeto" id="projeto" style="width: 400px" v-model="nProj" @change="atualizaProjSelec()" >
                     <option :value= "-1" disable selected> Selecionar Projeto</option>
-                    <option v-for= "option in projetos" :key= "option.numProj" v-bind:value="option.numProj" >
+                    <option v-for= "option in getMaquetes" :key= "option.numProj" v-bind:value="option.numProj" >
                         {{option.nomProj}} N°{{option.numProj}} </option>                    
                 </select>
 
@@ -101,54 +101,10 @@
                 </div>
           </div> 
 
-<!---TABELA voltar a fazer!!--->
-           <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                       <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Projeto</th>
-                                        <th>Isométrico</th>
-                                        <th>Desenhistas</th>
-                                        <th>Verificador</th>
-                                        <th>Revisão</th>
-                                        <th>Estatus</th>
-                                        <th>Data Inicial</th>
-                                        <th>Data Emissão</th>
-                                        <th>N°Folhas</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr  v-for="des in desenhos" :key="des.id">
-                                        <td>{{des.desContratado}} </td>
-                                        <td>{{des.tag}} </td>
-                                        <td>{{des.desIdCad}} </td>
-                                        <td>{{des.nomeVerificador}} </td>
-                                        <td>{{des.revisao}} </td>
-                                        <td>{{des.status}} </td>
-                                    
-                                        <td>{{formatoDeDatas(des.dataini)}} </td>
-                                        <td>{{formatoDeDatas(des.datafim)}} </td>
-                                        <td>{{des.numFolhas}} </td>
-
-                                   </tr>                       
-                                   
-                                </tbody>
-                            </table>
-                            
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-
-
-<!--TABELA-->
+          <!---TABELA DE DESENHOS-->
+          <div class ="row">
+              <tabela-desenhos :valor="desenhos"></tabela-desenhos>
+          </div>
 
             <!-- /.row -->
             <div class="row">
@@ -602,6 +558,8 @@ import axios from 'axios'
 import { mapState } from 'vuex'
 import {mapMutations,mapGetters} from 'vuex'
 import DatePicker from 'vue2-datepicker'
+import TabelaDesenho from './tabelas/TabelaDes'
+
 
 export default {
   name: 'DashBoard',
@@ -639,7 +597,6 @@ export default {
                 'CANCELADO'
             ],
             desenhos:[],
-            projetos:[],
             nProj: -1,
 
     }
@@ -647,16 +604,20 @@ export default {
 
 
   components: {
-      DatePicker
+      DatePicker,
+    'tabela-desenhos':TabelaDesenho,
+
   },
 
    computed: {
     ...mapState([
       'usuario',
+      'maquetes'
     ]),
        ...mapGetters([
 
-      'getUsuario'
+      'getUsuario',
+      'getMaquetes'
     ]),
 
    },
@@ -664,6 +625,12 @@ export default {
 
 //CONTAGEM DE STATUS COM CALENDARIO - GERAL
   methods: {
+
+
+      ...mapMutations([
+          'setMaquetes'
+
+      ]),
 
         contagemPorData(){
              axios.get('/desenho/contagemstatus', { headers: {  Accept: 'application/json'  },
@@ -779,7 +746,7 @@ axios.get('/desenho/desenhosdatastatus',
       
      } ).then(res =>{
         console.log(res)
-        this.projetos=res.data
+        this.setMaquetes(res.data)
       })
       .catch(error => console.log(error.response))
 
@@ -791,6 +758,7 @@ axios.get('/desenho/desenhosdatastatus',
 
     },
    },
+
  
      created() {
          this.carregaCombo(),

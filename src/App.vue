@@ -1,15 +1,7 @@
 <template>
   <div id="app">
-    <!--<router-link to="/login"></router-link>-->
-
     <router-view />
 
-    <!--<router-link to="/dashboard"></router-link>-->
-
-    <!-- <router-link to="Home/public/login">
-      <a v-if="getUsuario!=null">
-    
-    </router-link>-->
   </div>
 </template>
 
@@ -17,7 +9,10 @@
 
 //import Login from '@/components/pages/Login';
 
-import Login from './components/pages/Login'
+import Login from './components/pages/Login';
+import TabelaDesenho from './components/tabelas/TabelaDes';
+import TabelaLinha from './components/tabelas/TabelasLin';
+
 import { mapState, mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 
@@ -47,7 +42,8 @@ export default {
     }
   },
   components:{
- 
+    'tabela-desenhos':TabelaDesenho,
+    'tabela-linhas':TabelaLinha
 
   },
 

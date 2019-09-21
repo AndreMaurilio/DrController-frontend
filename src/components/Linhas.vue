@@ -85,6 +85,8 @@
 
 <script>
 import axios from 'axios'
+import TabelaLinha from './tabelas/TabelasLin'
+
 export default {
   name: 'Linhas',
   data () {
@@ -228,10 +230,14 @@ computed:{
           })
         .then(res => {
         //    this.$router.push('/')
+          alert('Cadastrado com sucesso!')
   
         })
         .catch(error => console.log(error.response))
     } 
+  },
+  components:{
+    'tabela-linhas':TabelaLinha
   }
 }
 
