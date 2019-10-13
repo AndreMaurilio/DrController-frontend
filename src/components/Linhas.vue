@@ -2,7 +2,7 @@
   <div id="page-wrapper">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">Cadastro de Usuario</h1>
+        <h1 class="page-header">Carregar e cadastrar Linhas</h1>
       </div>
       <!-- /.col-lg-12 -->
     </div>
@@ -26,7 +26,7 @@
             <div class="col-sm-offset-3 col-sm-9">
               <div class="checkbox-inline">
                 <label for="header_rows">
-                  <input type="checkbox" id="header_rows" /> File contains header row?
+                  <!--<input type="checkbox" id="header_rows" /> File contains header row?-->
                 </label>
               </div>
             </div>

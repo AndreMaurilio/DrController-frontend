@@ -39,14 +39,27 @@ const router = new Router({
       path: '/',
       name: 'Home',
       component: Home,
+
       children: [
         //{ path: '/public/login', name: 'Login', component: Login },
 
-        { path: '/dashboard', name: 'DashBoard', component: DashBoard },
-
-        { path: '/float', name: 'FloatCharts', component: FloatCharts },
-        { path: '/morris', name: 'MorrisCharts', component: MorrisCharts },
-        { path: '/linhas', name: 'Linhas', component: Linhas },
+        {
+          path: '/dashboard',
+          name: 'DashBoard',
+          component: DashBoard,
+          children: [
+            { path: '/float', name: 'FloatCharts', component: FloatCharts },
+            { path: '/morris', name: 'MorrisCharts', component: MorrisCharts }
+          ]
+        },
+        {
+          path: '/linhas',
+          name: 'Linhas',
+          component: Linhas
+          /* beforeEnter: (to, from, next) => {
+            this.$router.go();
+          }*/
+        },
 
         { path: '/tables', name: 'Tables', component: Tables },
         { path: '/forms', name: 'Forms', component: Forms },

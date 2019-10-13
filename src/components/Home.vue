@@ -18,7 +18,7 @@
       </div>
       <!-- /.navbar-header -->
 
-      <!-- LOGAUT-->
+      <!-- LOGOAUT-->
       <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -53,9 +53,12 @@
         <div class="sidebar-nav navbar-collapse">
           <ul class="nav" id="side-menu">
             <li>
-              <router-link to="/dashboard">
+              <!-- <router-link to="/dashboard">
                 <i class="fa fa-paper-plane fa-fw"></i> Emissões
-              </router-link>
+              </router-link>-->
+              <a href="/dashboard">
+                <i class="fa fa-paper-plane fa-fw"></i> Emissões
+              </a>
             </li>
             <!--<li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graficos<span class="fa arrow"></span></a>
@@ -70,13 +73,16 @@
                                /.nav-second-level 
             </li> GRAFICOS - DEFINIR DEPOIS SE VAI APROVEITA ALGO DAQUI-->
             <li>
-              <router-link to="/tables">
+              <!-- <router-link to="/tables">
                 <i class="fa fa-table fa-fw"></i> Documentos
-              </router-link>
+              </router-link>-->
+              <a href="/tables">
+                <i class="fa fa-table fa-fw"></i> Documentos
+              </a>
             </li>
 
             <li>
-              <a href="#">
+              <a href="javascript:void(0);">
                 <i class="fa fa-wrench fa-fw"></i> Cadastros
                 <span class="fa arrow"></span>
               </a>
@@ -91,9 +97,12 @@
               <!-- CAMPO DE LINHAS -->
             </li>
             <li>
-              <router-link to="/linhas">
+              <!--<router-link to="/linhas">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Linhas
-              </router-link>
+              </router-link>-->
+              <a href="/linhas">
+                <i class="fa fa-bar-chart-o fa-fw"></i>Linhas
+              </a>
             </li>
             <li></li>
             <li>
@@ -184,6 +193,7 @@
 
 import { mapState, mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
+
 export default {
   name: 'Home',
   data () {

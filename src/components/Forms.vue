@@ -1,54 +1,52 @@
 <template>
   <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Cadastro de Usuario</h1>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">Formulario</div>
+          <div class="panel-body">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Cadastro de Usuario</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>Nome:</label>
-                                            <input class="form-control" v-model="nome" placeholder="Enter text">
-                                            <p class="help-block">Example block-level help text here.</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email:</label>
-                                            <input class="form-control" v-model="email"  placeholder="Enter text">
-                                        </div>
-                                         <div class="form-group">
-                                            <label>Senha:</label>
-                                            <input class="form-control" v-model="senha" placeholder="Enter text">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Repetir a senha:</label>
-                                            <input class="form-control" v-model="senha" placeholder="Enter text">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Chave do PLant3D:</label>
-                                            <input class="form-control" v-model="idCad" placeholder="Enter text">
-                                        </div>
-                                         <div class="form-group">
-                                            <label>Disciplina:</label>
-                                            <input class="form-control" v-model="disciplina" placeholder="Enter text">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Função:</label>
-                                            <input class="form-control" v-model="perfil" placeholder="Enter text">
-                                        </div>
-                                        <button class="btn btn-sucess" type="submit" @click="cadastrarUsuario" >SALVAR</button>
+              <div class="col-lg-6">
+                <form role="form">
+                  <div class="form-group">
+                    <label>Nome:</label>
+                    <input class="form-control" v-model="nome" placeholder="Enter text" />
+                    <p class="help-block">Example block-level help text here.</p>
+                  </div>
+                  <div class="form-group">
+                    <label>Email:</label>
+                    <input class="form-control" v-model="email" placeholder="Enter text" />
+                  </div>
+                  <div class="form-group">
+                    <label>Senha:</label>
+                    <input class="form-control" v-model="senha" placeholder="Enter text" />
+                  </div>
+                  <div class="form-group">
+                    <label>Repetir a senha:</label>
+                    <input class="form-control" v-model="senha" placeholder="Enter text" />
+                  </div>
+                  <div class="form-group">
+                    <label>Chave do PLant3D:</label>
+                    <input class="form-control" v-model="idCad" placeholder="Enter text" />
+                  </div>
+                  <div class="form-group">
+                    <label>Disciplina:</label>
+                    <input class="form-control" v-model="disciplina" placeholder="Enter text" />
+                  </div>
+                  <div class="form-group">
+                    <label>Função:</label>
+                    <input class="form-control" v-model="perfil" placeholder="Enter text" />
+                  </div>
+                  <button class="btn btn-sucess" type="submit" @click="cadastrarUsuario">SALVAR</button>
 
-                                        <div class="form-group">
+                  <!--  <div class="form-group">
                                             <label>Static Control</label>
                                             <p class="form-control-static">email@example.com</p>
                                         </div>
@@ -78,7 +76,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                       <div class="form-group">
                                             <label>Inline Checkboxes</label>
                                             <label class="checkbox-inline">
                                                 <input type="checkbox">1
@@ -141,89 +139,89 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <h1>Disabled Form States</h1>
-                                    <form role="form">
-                                        <fieldset disabled>
-                                            <div class="form-group">
-                                                <label for="disabledSelect">Disabled input</label>
-                                                <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="disabledSelect">Disabled select menu</label>
-                                                <select id="disabledSelect" class="form-control">
-                                                    <option>Disabled select</option>
-                                                </select>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">Disabled Checkbox
-                                                </label>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Disabled Button</button>
-                                        </fieldset>
-                                    </form>
-                                    <h1>Form Validation States</h1>
-                                    <form role="form">
-                                        <div class="form-group has-success">
-                                            <label class="control-label" for="inputSuccess">Input with success</label>
-                                            <input type="text" class="form-control" id="inputSuccess">
-                                        </div>
-                                        <div class="form-group has-warning">
-                                            <label class="control-label" for="inputWarning">Input with warning</label>
-                                            <input type="text" class="form-control" id="inputWarning">
-                                        </div>
-                                        <div class="form-group has-error">
-                                            <label class="control-label" for="inputError">Input with error</label>
-                                            <input type="text" class="form-control" id="inputError">
-                                        </div>
-                                    </form>
-                                    <h1>Input Groups</h1>
-                                    <form role="form">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">@</span>
-                                            <input type="text" class="form-control" placeholder="Username">
-                                        </div>
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-addon">.00</span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-eur"></i>
-                                            </span>
-                                            <input type="text" class="form-control" placeholder="Font Awesome Icon">
-                                        </div>
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">$</span>
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-addon">.00</span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                            <input type="text" class="form-control">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
+                  <button type="reset" class="btn btn-default">Reset Button</button>-->
+                </form>
+              </div>
+              <!--  <div class="col-lg-6">
+                <h1>Disabled Form States</h1>
+                <form role="form">
+                  <fieldset disabled>
+                    <div class="form-group">
+                      <label for="disabledSelect">Disabled input</label>
+                      <input
+                        class="form-control"
+                        id="disabledInput"
+                        type="text"
+                        placeholder="Disabled input"
+                        disabled
+                      />
                     </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+                    <div class="form-group">
+                      <label for="disabledSelect">Disabled select menu</label>
+                      <select id="disabledSelect" class="form-control">
+                        <option>Disabled select</option>
+                      </select>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" />Disabled Checkbox
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Disabled Button</button>
+                  </fieldset>
+                </form>
+                <h1>Form Validation States</h1>
+                <form role="form">
+                  <div class="form-group has-success">
+                    <label class="control-label" for="inputSuccess">Input with success</label>
+                    <input type="text" class="form-control" id="inputSuccess" />
+                  </div>
+                  <div class="form-group has-warning">
+                    <label class="control-label" for="inputWarning">Input with warning</label>
+                    <input type="text" class="form-control" id="inputWarning" />
+                  </div>
+                  <div class="form-group has-error">
+                    <label class="control-label" for="inputError">Input with error</label>
+                    <input type="text" class="form-control" id="inputError" />
+                  </div>
+                </form>
+                <h1>Input Groups</h1>
+                <form role="form">
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" class="form-control" placeholder="Username" />
+                  </div>
+                  <div class="form-group input-group">
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon">.00</span>
+                  </div>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-eur"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Font Awesome Icon" />
+                  </div>
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon">.00</span>
+                  </div>
+                  <div class="form-group input-group">
+                    <input type="text" class="form-control" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>-->
             </div>
-            <!-- /.row -->
+          </div>
         </div>
-        <!-- /#page-wrapper -->
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

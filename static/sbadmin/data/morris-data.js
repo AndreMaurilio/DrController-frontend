@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
   $.ajax({
     url: 'http://localhost:8020/drcontroll/desenho/graficousuario', //dummy server
     method: 'GET', //dummy server requires GET not POST
