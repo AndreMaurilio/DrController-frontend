@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
   $.ajax({
     url: 'http://localhost:8020/drcontroll/desenho/graficousuario', //dummy server
     method: 'GET', //dummy server requires GET not POST
@@ -22,6 +22,30 @@ $(document).ready(function() {
         pointFillColors: ['#ffffff'],
         pointStrokeColors: ['black'],
         lineColors: ['green', 'orange', 'red']
+      });
+    }
+  });
+});*/
+
+$(document).ready(function() {
+  $.ajax({
+    url: 'http://localhost:8020/drcontroll/desenho/graficousuario', //dummy server
+    method: 'GET', //dummy server requires GET not POST
+    datatype: 'json',
+    success: function(data) {
+      Morris.Bar({
+        element: 'morris-bar-chart', // element: 'morris-area-chart'//
+        data: data,
+        xkey: 'data',
+        ykeys: ['emitidos', 'verificando', 'cancelados'],
+        labels: ['Emitidos', 'Verificando', 'Cancelados'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        stacked: true,
+        resize: true,
+        pointFillColors: ['#ffffff'],
+        pointStrokeColors: ['black'],
+        barColors: ['green', 'orange', 'red']
       });
     }
   });

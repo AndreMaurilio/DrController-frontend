@@ -16,9 +16,26 @@
               <div class="col-lg-6">
                 <form role="form">
                   <div class="form-group">
+                    <label>Buscar usuario:</label>
+                    <input
+                      class="form-control"
+                      v-model="buscador"
+                      @input="buscador = $event.target.value.toUpperCase()"
+                      placeholder="busca..."
+                    />
+                  </div>
+                  <button class="btn btn-sucess" type="button" @click="buscarUsuario">BUSCAR</button>
+                </form>
+                <!-- CADASTRO-->
+                <form role="form">
+                  <div class="form-group">
                     <label>Nome:</label>
-                    <input class="form-control" v-model="nome" placeholder="Enter text" />
-                    <p class="help-block">Example block-level help text here.</p>
+                    <input
+                      class="form-control"
+                      v-model="nome"
+                      @input="nome = $event.target.value.toUpperCase()"
+                      placeholder="nome..."
+                    />
                   </div>
                   <div class="form-group">
                     <label>Email:</label>
@@ -30,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label>Repetir a senha:</label>
-                    <input class="form-control" v-model="senha" placeholder="Enter text" />
+                    <input class="form-control" placeholder="Enter text" />
                   </div>
                   <div class="form-group">
                     <label>Chave do PLant3D:</label>
@@ -38,13 +55,25 @@
                   </div>
                   <div class="form-group">
                     <label>Disciplina:</label>
-                    <input class="form-control" v-model="disciplina" placeholder="Enter text" />
+                    <input
+                      class="form-control"
+                      v-model="disciplina"
+                      @input="disciplina = $event.target.value.toUpperCase()"
+                      placeholder="Enter text"
+                    />
                   </div>
                   <div class="form-group">
                     <label>Função:</label>
-                    <input class="form-control" v-model="perfil" placeholder="Enter text" />
+                    <input
+                      class="form-control"
+                      v-model="perfil"
+                      @input="perfil = $event.target.value.toUpperCase()"
+                      placeholder="Enter text"
+                    />
                   </div>
                   <button class="btn btn-sucess" type="submit" @click="cadastrarUsuario">SALVAR</button>
+                  <button class="btn btn-sucess" type="button" @click="updateUsuario">ATUALIZAR</button>
+                  <button class="btn btn-sucess" type="button" @click="deletarUsuario">DELETAR</button>
 
                   <!--  <div class="form-group">
                                             <label>Static Control</label>
@@ -230,21 +259,86 @@ export default {
   name: 'Forms',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       
+          idUser:'',
           idCad:'',
           nome:'',
           disciplina:'',
           email:'',
           senha:'',
-          perfil:''
+          senhaConf:'',
+          hideSenha:'',
+          perfil:'',
+          buscador:'',
+          booluser:false,
+          user:{
+            idCad:'',
+            nome:'',
+            disciplina:'',
+            senha:'',
+            email:'',
+            perfil:'',
+
+          }
 
       
     }
   },
   methods: {
 
+
+
+
+      buscarUsuario(){
+        axios.get('/usuario/buscarusuario',{
+          params:{buscar: this.buscador}
+        }).then(res =>{
+          console.log(res)
+          this.idUser = res.data.id
+          this.nome = res.data.nome
+          this.email = res.data.email
+          this.disciplina = res.data.disciplina
+          this.perfil = res.data.perfil
+          this.idCad = res.data.idCad
+          this.hideSenha = res.data.senha
+          
+
+        
+        }
+
+      )
+      .catch(error => console.log(error.response))}
+      ,
+
+      updateUsuario () {
+        var senh =''
+        if(this.senha===''){
+           senh = this.hideSenha
+        }else{
+           senh = this.senha
+        }
+          
+      axios.post('/usuario/updateuser', 
+          {
+            id: this.idUser,
+            idCad: this.idCad,
+            nome: this.nome,
+            disciplina: this.disciplina,
+            email:this.email,
+            senha:this.senh,
+            perfil:this.perfil,
+
+          })
+        .then(res => {
+        //    this.$router.push('/')
+        alert(res)
+        })
+        .catch(error => console.log(error.response))
+    } ,
+
+
         cadastrarUsuario () {
+          
       axios.post('/usuario/saveusuario', 
           {
             idCad: this.idCad,
@@ -263,7 +357,36 @@ export default {
   
         })
         .catch(error => console.log(error.response))
-    } 
+    },
+    
+    deletarUsuario(){
+           var senh =''
+        if(this.senha===''){
+           senh = this.hideSenha
+        }else{
+           senh = this.senha
+        }
+      axios.post('/usuario/deltuser', 
+          {
+            id: this.idUser,
+            idCad: this.idCad,
+            nome: this.nome,
+            disciplina: this.disciplina,
+            email:this.email,
+            senha:this.senh,
+            perfil:this.perfil,
+
+          })
+        .then(res => {
+        //    this.$router.push('/')
+        alert(res)
+        })
+        .catch(error => console.log(error.response))
+    } ,
+
+
+
+    
 
 }
 
@@ -272,4 +395,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+form-group input {
+  text-transform: uppercase;
+}
 </style>

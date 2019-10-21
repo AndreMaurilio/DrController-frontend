@@ -156,6 +156,7 @@ computed:{
         var reader = new FileReader();
         reader.readAsText(e.target.files[0]);
         // Handle errors load
+
         reader.onload = function(event) {
           var csv = event.target.result;
           vm.parse_csv = vm.csvJSON(csv)
@@ -201,7 +202,7 @@ computed:{
 
         var firProp = Object.keys(str[i])[0]
         var arrayOfStrings = str[i][firProp].split(sep)     
-        pipe.blTag= arrayOfStrings[0];
+        pipe.blTag= vm.deletaComa(arrayOfStrings[0]);
         pipe.blMaterial = arrayOfStrings[1]
         pipe.blPendencias = arrayOfStrings[2]
         pipe.blFluido = arrayOfStrings[3]
@@ -234,14 +235,21 @@ computed:{
   
         })
         .catch(error => console.log(error.response))
-    } 
+    } ,
+
+    deletaComa: function(st){
+        var n = st.length
+        return st.substring(2,n-1)
+    }
   },
   components:{
     'tabela-linhas':TabelaLinha
   }
+
+  
 }
 
-
+ 
 
 
 </script>

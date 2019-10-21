@@ -28,7 +28,7 @@
           <td>{{des.status}}</td>
 
           <td>{{formatoDeDatas(des.dataini)}}</td>
-          <td>{{des.datafin}}</td>
+          <td>{{formatoDeDatas(des.datafin)}}</td>
           <td>{{des.numFolhas}}</td>
         </tr>
       </tbody>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     name: 'TabelaDesenhos',
     props:{
@@ -44,9 +45,8 @@ export default {
     },
     methods:{
       formatoDeDatas: function (desData) {
-        var dataDes = new Date(desData)
-        var strData = ''
-        return strData.concat(dataDes.getDate(),'/',dataDes.getMonth(),'/',dataDes.getFullYear())
+        return moment.utc(desData).format("DD/MM/YYYY")
+        
     },
     }
 

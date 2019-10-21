@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- end -->
     <router-view></router-view>
   </div>
 </template>
@@ -11,7 +12,6 @@
 import Login from './components/pages/Login';
 import TabelaDesenho from './components/tabelas/TabelaDes';
 import TabelaLinha from './components/tabelas/TabelasLin';
-
 import { mapState, mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
 

@@ -60,23 +60,12 @@
                 <i class="fa fa-paper-plane fa-fw"></i> Emissões
               </a>
             </li>
-            <!--<li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Graficos<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <router-link to="/float">  Flot Charts </router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/morris">  Morris.js Charts </router-link>
-                                </li>
-                            </ul>
-                               /.nav-second-level 
-            </li> GRAFICOS - DEFINIR DEPOIS SE VAI APROVEITA ALGO DAQUI-->
+     
             <li>
-              <!-- <router-link to="/tables">
+              <!--<router-link to="/tables">
                 <i class="fa fa-table fa-fw"></i> Documentos
               </router-link>-->
-              <a href="/tables">
+               <a href="/tables">
                 <i class="fa fa-table fa-fw"></i> Documentos
               </a>
             </li>
@@ -97,88 +86,14 @@
               <!-- CAMPO DE LINHAS -->
             </li>
             <li>
-              <!--<router-link to="/linhas">
+               <!--<router-link to="/linhas">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Linhas
               </router-link>-->
-              <a href="/linhas">
+             <a href="/linhas">
                 <i class="fa fa-bar-chart-o fa-fw"></i>Linhas
               </a>
             </li>
-            <li></li>
-            <li>
-              <a href="#">
-                <i class="fa fa-wrench fa-fw"></i> UI Elements
-                <span class="fa arrow"></span>
-              </a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <router-link to="/panels">Panels and Wells</router-link>
-                </li>
-                <li>
-                  <router-link to="/buttons">Buttons</router-link>
-                </li>
-                <li>
-                  <router-link to="/notifications">Notifications</router-link>
-                </li>
-                <li>
-                  <router-link to="/typography">Typography</router-link>
-                </li>
-                <li>
-                  <router-link to="/icons">Icons</router-link>
-                </li>
-                <li>
-                  <router-link to="/grid">Grid</router-link>
-                </li>
-              </ul>
-              <!-- /.nav-second-level -->
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown
-                <span class="fa arrow"></span>
-              </a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="#">Second Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Second Level Item</a>
-                </li>
-                <li>
-                  <a href="#">
-                    Third Level
-                    <span class="fa arrow"></span>
-                  </a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                  </ul>
-                  <!-- /.nav-third-level -->
-                </li>
-              </ul>
-              <!-- /.nav-second-level -->
-            </li>
-            <!--  <li> 
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <router-link to="/blank"> Blank Page </router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/login"> Login Page </router-link>
-                                </li>
-                            </ul>
-            </li>-->
+           
           </ul>
         </div>
         <!-- /.sidebar-collapse -->
