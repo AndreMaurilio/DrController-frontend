@@ -138,7 +138,7 @@
       <div class="col-lg-8">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <i class="fa fa-bar-chart-o fa-fw"></i> Grafico de Progressão:
+            <i class="fa fa-bar-chart-o fa-fw"></i> Grafico de Progressão
             <div class="pull-right">
               <div class="btn-group">
                 <button
@@ -151,18 +151,15 @@
                 </button>
                 <ul class="dropdown-menu pull-right" role="menu">
                   <li>
-                    <a href="#">Action</a>
+                    <a @click="graficoSelecao(mesGrafic[0])">1 mês</a>
                   </li>
                   <li>
-                    <a href="#">Another action</a>
+                    <a @click="graficoSelecao(mesGrafic[1])">6 mês</a>
                   </li>
                   <li>
-                    <a href="#">Something else here</a>
+                    <a @click="graficoSelecao(mesGrafic[2])">1 Ano</a>
                   </li>
                   <li class="divider"></li>
-                  <li>
-                    <a href="#">Separated link</a>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -223,6 +220,9 @@ export default {
             ],
             desenhos:[],
             nProj: -1,
+            mesGrafic:[1,6,12],
+            morrisBar:null,
+            nomeProj:''
 
     }
   },
@@ -378,6 +378,52 @@ axios.get('/desenho/desenhosdatastatus',
       .catch(error => console.log(error.response))
 
     },  
+
+//GRAFICO POR SELEÇÃO
+    graficoSelecao(num){
+
+      axios.get('/desenho/graficoselect', { headers: {  Accept: 'application/json'  },
+    
+      params:{
+        dIni:num,
+        proj:this.nProj
+      }}
+    
+    
+    ).then(res =>{
+        console.log(res)
+        this.sucess(res.data)
+      })
+
+
+    },
+
+
+     sucess:function(res){
+       if(this.morrisBar != null){
+         this.morrisBar.setData(res)
+         }
+       else{
+        
+       this.morrisBar = Morris.Bar({
+        element: 'morris-bar-chart', // element: 'morris-area-chart'//
+        data: res,
+        xkey: 'data',
+        ykeys: ['emitidos', 'verificando', 'cancelados'],
+        labels: ['Emitidos', 'Verificando', 'Cancelados'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        stacked: true,
+        resize: true,
+        pointFillColors: ['#ffffff'],
+        pointStrokeColors: ['black'],
+        barColors: ['green', 'orange', 'red']
+      })
+      }},
+
+ 
+
+
 
          //SETA VARIAVEL QUE IDENTIFICA O PROJETO E ATUALIZA OS CAMPOS
     atualizaProjSelec(){

@@ -58,6 +58,7 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       nome: '',
       senha: '',
+      pass:false
     }
   },
 
@@ -95,7 +96,8 @@ computed: {
           this.setUsuario(res.data)
           this.setToken(res.headers.token) 
           this.$router.push('/dashboard')
-          
+         this.$router.go('/dashboard')
+    
         })
         .catch(error => console.log(error))
     }

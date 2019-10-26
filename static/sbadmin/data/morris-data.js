@@ -25,7 +25,7 @@
       });
     }
   });
-});*/
+});
 
 $(document).ready(function() {
   $.ajax({
@@ -34,7 +34,7 @@ $(document).ready(function() {
     datatype: 'json',
     success: function(data) {
       Morris.Bar({
-        element: 'morris-bar-chart', // element: 'morris-area-chart'//
+        //   element: 'morris-bar-chart', // element: 'morris-area-chart'//
         data: data,
         xkey: 'data',
         ykeys: ['emitidos', 'verificando', 'cancelados'],
@@ -50,7 +50,7 @@ $(document).ready(function() {
     }
   });
 });
-
+*/
 /*
 $(function() {
 
