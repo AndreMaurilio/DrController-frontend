@@ -19,7 +19,7 @@ import Icons from '@/components/ui-elements/Icons';
 import Notifications from '@/components/ui-elements/Notifications';
 import Panels from '@/components/ui-elements/Panels';
 import Typography from '@/components/ui-elements/Typography';
-
+import store from '@/store';
 import Blank from '@/components/pages/Blank';
 //import Login from '@/components/pages/Login';
 
@@ -51,22 +51,42 @@ const router = new Router({
             { path: '/float', name: 'FloatCharts', component: FloatCharts },
             { path: '/morris', name: 'MorrisCharts', component: MorrisCharts }
           ]
-        },
+        }, { path: '/tables', name: 'Tables', component: Tables },
         {
           path: '/linhas',
           name: 'Linhas',
-          component: Linhas
-          /* beforeEnter: (to, from, next) => {
-            this.$router.go();
-          }*/
+          component: Linhas,
+           beforeEnter: (to, from, next) => {
+             if (store.state.usuario.autorizacoes[0].authority == 'ROLE_ADMIN') {
+               next()
+             } else {
+               next(false)
+             }          }
         },
 
-        { path: '/tables', name: 'Tables', component: Tables },
-        { path: '/forms', name: 'Forms', component: Forms },
+        { path: '/forms'
+        , name: 'Forms',
+         component: Forms,
+          beforeEnter: (to, from, next) => {
+            if (store.state.usuario.autorizacoes[0].authority == 'ROLE_ADMIN') {
+              next()
+            } else {
+              next(false)
+            }    
+        }
+      },
         {
           path: '/formsMaquete',
           name: 'FormsMaquete',
-          component: FormsMaquete
+          component: FormsMaquete,
+          beforeEnter: (to, from, next) => {
+            if (store.state.usuario.autorizacoes[0].authority == 'ROLE_ADMIN') {
+              next()
+            } else {
+              next(false)
+            }
+          }
+        
         },
 
         { path: '/buttons', name: 'Buttons', component: Buttons },

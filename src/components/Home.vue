@@ -69,8 +69,7 @@
                 <i class="fa fa-table fa-fw"></i> Documentos
               </a>
             </li>
-
-            <li>
+            <li v-if="getRole=='ROLE_ADMIN'">
               <a href="javascript:void(0);">
                 <i class="fa fa-wrench fa-fw"></i> Cadastros
                 <span class="fa arrow"></span>
@@ -83,13 +82,9 @@
                   <router-link to="/formsMaquete">Cadastro de Projetos</router-link>
                 </li>
               </ul>
-              <!-- CAMPO DE LINHAS -->
-            </li>
-            <li>
-               <!--<router-link to="/linhas">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Linhas
-              </router-link>-->
-             <a href="/linhas">
+            </li>            
+            <li v-if="getRole=='ROLE_ADMIN'">
+               <a href="/linhas">
                 <i class="fa fa-bar-chart-o fa-fw"></i>Linhas
               </a>
             </li>
@@ -123,7 +118,8 @@ export default {
     ]),
     ...mapGetters([
       'getToken',
-      'getUsuario'
+      'getUsuario',
+      'getRole'
 
     ])
 

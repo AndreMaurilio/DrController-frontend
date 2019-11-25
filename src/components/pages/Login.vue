@@ -63,13 +63,6 @@ export default {
   },
 
 computed: {
-...mapGetters([
-
-    'getUsuarioAut',
-
-]
-
-)
 
 },
 

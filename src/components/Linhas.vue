@@ -165,11 +165,11 @@ computed:{
         };
         reader.onerror = function(evt) {
           if(evt.target.error.name == "NotReadableError") {
-            alert("Canno't read file !");
+            alert("Arquivo nao pode ser lido !");
           }
         };
       } else {
-        alert('FileReader are not supported in this browser.');
+        alert('FileReader não é suportado nesse browser');
       }
     },
 
@@ -225,7 +225,7 @@ computed:{
           
           {
             
-          linhas:this.listaLinhas //}, {     headers: { Accept: 'application/json' }
+          linhas:this.listaLinhas 
 
 
           })
@@ -238,9 +238,24 @@ computed:{
     } ,
 
     deletaComa: function(st){
-        var n = st.length
-        return st.substring(2,n-1)
-    }
+      if(st[2]=='"'){
+         var coma = st[2].concat(st[3])
+         var str =  st.replace(coma,st[3])
+         var n = str.length
+         str = str.substring(0,n-1)
+         return str.substring(n,1)
+
+         
+         }else if(st[3]=='"'){
+        var coma = st[2].concat(st[3])
+         var str = st.replace(coma,st[2])
+         var n = str.length
+         str = str.substring(0,n-1)
+         return str.substring(n,1)
+         }
+         return st
+         
+         }
   },
   components:{
     'tabela-linhas':TabelaLinha

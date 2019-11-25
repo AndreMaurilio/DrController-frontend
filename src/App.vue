@@ -24,6 +24,7 @@ export default {
        'usuario'
     ]),
     ...mapGetters([
+       'getRole'
     
     ])
 

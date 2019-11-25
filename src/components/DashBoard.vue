@@ -146,7 +146,7 @@
                   class="btn btn-default btn-xs dropdown-toggle"
                   data-toggle="dropdown"
                 >
-                  Actions
+                  Período
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu pull-right" role="menu">

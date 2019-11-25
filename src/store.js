@@ -41,6 +41,9 @@ export default new Vuex.Store({
     getUsuario(state) {
       return state.usuario;
     },
+    getRole(state) {
+      return state.usuario.autorizacoes[0].authority;
+    },
     getAdmin(state) {
       return state.admin;
     },
