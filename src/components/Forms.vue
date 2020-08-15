@@ -24,7 +24,13 @@
                       placeholder="busca..."
                     />
                   </div>
-                  <button class="btn btn-sucess" type="button" @click="buscarUsuario">BUSCAR</button>
+                  <button
+                    class="btn btn-sucess"
+                    type="button"
+                    @click="buscarUsuario"
+                  >
+                    BUSCAR
+                  </button>
                 </form>
                 <!-- CADASTRO-->
                 <form role="form">
@@ -39,11 +45,19 @@
                   </div>
                   <div class="form-group">
                     <label>Email:</label>
-                    <input class="form-control" v-model="email" placeholder="Enter text" />
+                    <input
+                      class="form-control"
+                      v-model="email"
+                      placeholder="Enter text"
+                    />
                   </div>
                   <div class="form-group">
                     <label>Senha:</label>
-                    <input class="form-control" v-model="senha" placeholder="Enter text" />
+                    <input
+                      class="form-control"
+                      v-model="senha"
+                      placeholder="Enter text"
+                    />
                   </div>
                   <div class="form-group">
                     <label>Repetir a senha:</label>
@@ -51,7 +65,11 @@
                   </div>
                   <div class="form-group">
                     <label>Chave do PLant3D:</label>
-                    <input class="form-control" v-model="idCad" placeholder="Enter text" />
+                    <input
+                      class="form-control"
+                      v-model="idCad"
+                      placeholder="Enter text"
+                    />
                   </div>
                   <div class="form-group">
                     <label>Disciplina:</label>
@@ -71,9 +89,27 @@
                       placeholder="Enter text"
                     />
                   </div>
-                  <button class="btn btn-sucess" type="submit" @click="cadastrarUsuario">SALVAR</button>
-                  <button class="btn btn-sucess" type="button" @click="updateUsuario">ATUALIZAR</button>
-                  <button class="btn btn-sucess" type="button" @click="deletarUsuario">DELETAR</button>
+                  <button
+                    class="btn btn-sucess"
+                    type="submit"
+                    @click="cadastrarUsuario"
+                  >
+                    SALVAR
+                  </button>
+                  <button
+                    class="btn btn-sucess"
+                    type="button"
+                    @click="updateUsuario"
+                  >
+                    ATUALIZAR
+                  </button>
+                  <button
+                    class="btn btn-sucess"
+                    type="button"
+                    @click="deletarUsuario"
+                  >
+                    DELETAR
+                  </button>
 
                   <!--  <div class="form-group">
                                             <label>Static Control</label>
@@ -254,143 +290,118 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  name: 'Forms',
-  data () {
+  name: "Forms",
+  data() {
     return {
-      
-          idUser:'',
-          idCad:'',
-          nome:'',
-          disciplina:'',
-          email:'',
-          senha:'',
-          senhaConf:'',
-          hideSenha:'',
-          perfil:'',
-          buscador:'',
-          booluser:false,
-          user:{
-            idCad:'',
-            nome:'',
-            disciplina:'',
-            senha:'',
-            email:'',
-            perfil:'',
-
-          }
-
-      
-    }
+      idUser: "",
+      idCad: "",
+      nome: "",
+      disciplina: "",
+      email: "",
+      senha: "",
+      senhaConf: "",
+      hideSenha: "",
+      perfil: "",
+      buscador: "",
+      booluser: false,
+      user: {
+        idCad: "",
+        nome: "",
+        disciplina: "",
+        senha: "",
+        email: "",
+        perfil: ""
+      }
+    };
   },
   methods: {
-
-
-
-
-      buscarUsuario(){
-        axios.get('/usuario/buscarusuario',{
-          params:{buscar: this.buscador}
-        }).then(res =>{
-          console.log(res)
-          this.idUser = res.data.id
-          this.nome = res.data.nome
-          this.email = res.data.email
-          this.disciplina = res.data.disciplina
-          this.perfil = res.data.perfil
-          this.idCad = res.data.idCad
-          this.hideSenha = res.data.senha
-          
-
-        
-        }
-
-      )
-      .catch(error => console.log(error.response))}
-      ,
-
-      updateUsuario () {
-        var senh =''
-        if(this.senha===''){
-           senh = this.hideSenha
-        }else{
-           senh = this.senha
-        }
-          
-      axios.post('/usuario/updateuser', 
-          {
-            id: this.idUser,
-            idCad: this.idCad,
-            nome: this.nome,
-            disciplina: this.disciplina,
-            email:this.email,
-            senha:this.senh,
-            perfil:this.perfil,
-
-          })
-        .then(res => {
-        //    this.$router.push('/')
-        alert(res)
+    buscarUsuario() {
+      axios
+        .get("/usuario/buscarusuario", {
+          params: { buscar: this.buscador }
         })
-        .catch(error => console.log(error.response))
-    } ,
-
-
-        cadastrarUsuario () {
-          
-      axios.post('/usuario/saveusuario', 
-          {
-            idCad: this.idCad,
-            nome: this.nome,
-            disciplina: this.disciplina,
-            email:this.email,
-            senha:this.senha,
-            perfil:this.perfil,
-
-
-             headers: { Accept: 'application/json' }
-
-          })
         .then(res => {
-        //    this.$router.push('/')
-  
+          console.log(res);
+          this.idUser = res.data.id;
+          this.nome = res.data.nome;
+          this.email = res.data.email;
+          this.disciplina = res.data.disciplina;
+          this.perfil = res.data.perfil;
+          this.idCad = res.data.idCad;
+          this.hideSenha = res.data.senha;
         })
-        .catch(error => console.log(error.response))
+        .catch(error => console.log(error.response));
     },
-    
-    deletarUsuario(){
-           var senh =''
-        if(this.senha===''){
-           senh = this.hideSenha
-        }else{
-           senh = this.senha
-        }
-      axios.post('/usuario/deltuser', 
-          {
-            id: this.idUser,
-            idCad: this.idCad,
-            nome: this.nome,
-            disciplina: this.disciplina,
-            email:this.email,
-            senha:this.senh,
-            perfil:this.perfil,
+    updateUsuario() {
+      var senh = "";
+      if (this.senha === "") {
+        senh = this.hideSenha;
+      } else {
+        senh = this.senha;
+      }
 
-          })
-        .then(res => {
-        //    this.$router.push('/')
-        alert(res)
+      axios
+        .post("/usuario/updateuser", {
+          id: this.idUser,
+          idCad: this.idCad,
+          nome: this.nome,
+          disciplina: this.disciplina,
+          email: this.email,
+          senha: this.senh,
+          perfil: this.perfil
         })
-        .catch(error => console.log(error.response))
-    } ,
+        .then(res => {
+          //    this.$router.push('/')
+          alert(res);
+        })
+        .catch(error => console.log(error.response));
+    },
 
+    cadastrarUsuario() {
+      axios
+        .post("/usuario/saveusuario", {
+          idCad: this.idCad,
+          nome: this.nome,
+          disciplina: this.disciplina,
+          email: this.email,
+          senha: this.senha,
+          perfil: this.perfil,
 
+          headers: { Accept: "application/json" }
+        })
+        .then(res => {
+          //    this.$router.push('/')
+        })
+        .catch(error => console.log(error.response));
+    },
 
-    
-
-}
-
-}
+    deletarUsuario() {
+      var senh = "";
+      if (this.senha === "") {
+        senh = this.hideSenha;
+      } else {
+        senh = this.senha;
+      }
+      axios
+        .post("/usuario/deltuser", {
+          id: this.idUser,
+          idCad: this.idCad,
+          nome: this.nome,
+          disciplina: this.disciplina,
+          email: this.email,
+          senha: this.senh,
+          perfil: this.perfil
+        })
+        .then(res => {
+          //    this.$router.push('/')
+          alert(res);
+        })
+        .catch(error => console.log(error.response));
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
