@@ -9,6 +9,7 @@
         <tr>
           <th>Projeto</th>
           <th>Isométrico</th>
+          <th>N°Desenho</th>
           <th>Desenhistas</th>
           <th>Verificador</th>
           <th>Revisão</th>
@@ -22,6 +23,7 @@
         <tr v-for="des in valor" :key="des.id">
           <td>{{des.desContratado}}</td>
           <td>{{des.tag}}</td>
+          <td>{{des.pid}}</td>
           <td>{{des.desIdCad}}</td>
           <td>{{des.nomeVerificador}}</td>
           <td>{{des.revisao}}</td>
