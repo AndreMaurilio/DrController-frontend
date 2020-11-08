@@ -71,7 +71,7 @@
                   </div>
                   <div class="form-group">
                     <label>Data de inicio:</label>
-                    <input class="form-control" v-model="dataProjeto" placeholder="Enter text" />
+                    <input class="form-control" v-model="dataProjeto" placeholder="AAAA/MM/DD" />
                   </div>
                   <button class="btn btn-sucess" type="submit" @click="cadastrarMaquete">SALVAR</button>
                   <button class="btn btn-sucess" type="button" @click="updateMaquete">ATUALIZAR</button>
