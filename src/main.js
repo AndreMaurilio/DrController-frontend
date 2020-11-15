@@ -6,6 +6,9 @@ import router from './router';
 import store from './store';
 import axios from 'axios';
 
+
+//axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
+
 axios.defaults.baseURL = 'http://192.168.56.101:8020/drcontroll';
 //axios.defaults.baseURL = 'http://localhost:8020/drcontroll';
 
