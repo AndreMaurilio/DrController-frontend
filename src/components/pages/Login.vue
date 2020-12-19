@@ -55,7 +55,7 @@ export default {
   name: 'Login',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'Bem vindo ao DrawningController',
       nome: '',
       senha: '',
       pass:false

@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8 As build-stage
 
 RUN npm install -g http-server
 
@@ -19,5 +19,17 @@ COPY . /var/www
 RUN npm run build
 
 EXPOSE 8081
-ENTRYPOINT [ "npm", "run","dev" ]
+#ENTRYPOINT [ "npm", "run","dev" ]
+
+FROM nginx:1.14.2
+
+COPY /nginx/nginx.conf /etc/nginx/nginx.conf
+
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY  --from=build-stage /var/www/dist /usr/share/nginx/html
+
+##ENTRYPOINT [ "npm", "run","dev" ]
+
 
