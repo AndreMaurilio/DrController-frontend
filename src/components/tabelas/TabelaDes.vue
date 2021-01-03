@@ -8,6 +8,7 @@
       <thead>
         <tr>
           <th>Projeto</th>
+          <th>Subtítulo</th>
           <th>Isométrico</th>
           <th>N°Desenho</th>
           <th>Desenhistas</th>
@@ -22,6 +23,7 @@
       <tbody>
         <tr v-for="des in valor" :key="des.id">
           <td>{{des.desContratado}}</td>
+          <td>{{des.desSubtitulo}}</td>
           <td>{{des.tag}}</td>
           <td>{{des.pid}}</td>
           <td>{{des.desIdCad}}</td>
