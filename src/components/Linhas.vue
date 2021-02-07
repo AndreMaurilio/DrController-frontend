@@ -242,7 +242,7 @@ computed:{
          var coma = st[2].concat(st[3])
          var str =  st.replace(coma,st[3])
          var n = str.length
-         str = str.substring(0,n-1)
+         str = str.substring(0,n)
          return str.substring(n,1)
 
          
@@ -250,10 +250,11 @@ computed:{
         var coma = st[2].concat(st[3])
          var str = st.replace(coma,st[2])
          var n = str.length
-         str = str.substring(0,n-1)
+         str = str.substring(0,n)
          return str.substring(n,1)
          }
-         return st
+         var n = st.length
+         return st.substring(1,n)
          
          }
   },

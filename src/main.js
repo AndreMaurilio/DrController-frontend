@@ -9,9 +9,9 @@ import axios from 'axios';
 
 //axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 
-//axios.defaults.baseURL = 'http://192.168.56.101:8020/drcontroll';
+//axios.defaults.baseURL = 'http://192.168.56.3:8020/drcontroll';
 //axios.defaults.baseURL = 'http://localhost:8020/drcontroll';
-axios.defaults.baseURL = 'http://192.168.0.42:8081/drcontroller-backend'; // alterar ip e porta conforme host do server
+axios.defaults.baseURL = 'http://192.168.56.3:80/drcontroller-backend'; // alterar ip e porta conforme host do server
 
 
 
