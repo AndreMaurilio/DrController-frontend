@@ -34,6 +34,7 @@
 
             <div class="col-sm-offset-3 col-sm-9">
               <a href="#" class="btn btn-primary" @click="cadastrarLinhas ()">Salvar</a>
+              <label for="csv_file"  class="control-label col-sm-3 text-left"  >Total de Linhas: {{total_linhas}}</label>
             </div>
 
             <table
@@ -99,7 +100,8 @@ export default {
       sortOrders:{},
       sortKey: '',
       listaLinhas: [],
-      linhas:[]
+      linhas:[],
+      total_linhas:0
    
     };
   },
@@ -210,7 +212,10 @@ computed:{
         pipe.blSite = arrayOfStrings[5]
         pipe.blBimTag = arrayOfStrings[6]
         pipe.blMaquete = parseInt(arrayOfStrings[7],10)
-        vm.setaArrayLinha(pipe)}
+        vm.setaArrayLinha(pipe)
+        this.total_linhas ++
+
+        }
         // return linha
     },
 
